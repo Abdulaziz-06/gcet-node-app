@@ -19,7 +19,7 @@ app.get("/name",(req,res)=>{
 });
 
 app.get("/d",(req,res)=>{
-  return res.send(" 40 degrees");
+  return res.send(" <h2>Todays weather 40 degrees</h2>");
 })
 
 const products = [
