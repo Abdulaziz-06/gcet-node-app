@@ -1,0 +1,34 @@
+import express from 'express';
+import orderModel from '../models/orderModel.js';
+
+const orderRouter = express.Router();
+
+console.log("Order router created successfully");
+
+// Simple test route
+orderRouter.get("/test", (req, res) => {
+    console.log("Order test route hit!");
+    res.json({message: "Order router is working!"});
+});
+
+orderRouter.get("/:id", async (req, res) => {
+    const email = req.params.id;
+    const result = await orderModel.find({email}, {});
+    return res.json(result);
+});
+
+
+orderRouter.post("/new", async (req, res) => {
+    console.log("POST /new route hit!");
+    try {
+        const {email, value} = req.body;
+        console.log("Request body:", {email, value});
+        const result = await orderModel.create({email: email, value: value});
+        return res.json(result);
+    } catch (error) {
+        console.error('Error creating order:', error);
+        return res.status(500).json({error: 'Failed to create order'});
+    }
+});
+
+export default orderRouter;
