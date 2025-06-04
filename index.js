@@ -44,14 +44,7 @@ app.use(express.json())
 //   return res.send(" <h2>Todays weather 40 degrees</h2>");
 // })
 
-// const products = [
-//   { id: 1,name:"Product 1",price:1000},
-//   { id: 2,name:"Product 2",price:2000},
-//   { id: 3,name:"Product 3",price:3000}
-// ];
-// app.get("/products",(req,res)=>{
-//   res.send(products);
-// })
+
 console.log("Connecting to MongoDB...");
 console.log("MongoDB URI:", MONGODB_URI ? "URI loaded successfully" : "URI not found");
 
