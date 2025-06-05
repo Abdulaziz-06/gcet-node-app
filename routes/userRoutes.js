@@ -151,4 +151,28 @@ userRouter.post("/cart", async (req, res) => {
   }
 });
 
+// Get orders for a specific user
+userRouter.get("/orders/user/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    // Find orders for the specific user
+    const orders = await orderModel.find({ userId: userId })
+      .sort({ createdAt: -1 }) // Most recent orders first
+      .exec();
+    
+    res.json({
+      success: true,
+      orders: orders
+    });
+    
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch orders'
+    });
+  }
+});
+
 export default userRouter
