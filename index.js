@@ -9,6 +9,7 @@ dotenv.config();
 import userRouter from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
 import orderRouter from "./routes/orderRoutes.js";
+import cartRouter from "./routes/cartRoutes.js";
 const app = express();
 const MONGODB_URI = process.env.MONGODB_URI;
 app.use(cors());
@@ -23,6 +24,11 @@ app.get("/", (req, res) => {
 app.use("/users", userRouter);
 app.use("/products", productRouter);
 app.use("/order", orderRouter);
+app.use("/cart", cartRouter);
+
+// API routes for frontend compatibility
+app.use("/api", userRouter);
+app.use("/api/cart", cartRouter);
 
 // app.listen(8080, async () => {
 //     console.log("Server Started on port 8080");
