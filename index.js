@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 // Register routes
 app.use("/users", userRouter);
 app.use("/products", productRouter);
-app.use("/order", orderRouter);
+app.use('/orders', orderRouter);
 app.use("/cart", cartRouter);
 
 // API routes for frontend compatibility
